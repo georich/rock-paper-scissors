@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Rock Paper Scissors</title>
+</head>
+<body>
+  <script>
+    const choices = ['rock', 'paper', 'scissors'];
+
+    // Computers choice
+    function computerPlay() {
+        return choices[Math.floor(Math.random() * 3)];
+    } 
+
+    // Finding winner or loser
+    function playRound(playerChoice, cpuChoice) {
+        playerChoice = playerChoice.toLowerCase();
+        let result;
+
+        if (playerChoice === cpuChoice) {
+            result = 'Tie';
+        }   else if ((playerChoice === 'rock') && (cpuChoice === 'scissors')) {
+            result = 'Win! Rock beats scissors';
+        }   else if ((playerChoice === 'paper') && (cpuChoice === 'rock')) {
+            result = 'Win! Paper beats rock';
+        }   else if ((playerChoice === 'scissors') && (cpuChoice === 'paper')) {
+            result = 'Win! Scissors beats paper';
+        }   else {
+            result = ('Lose, ' + cpuChoice + ' beats ' + playerChoice);
+        }
+        return result;
+    }
+
+    playerChoice = prompt('Rock, Paper, Scissors. Pick your option:');
+    cpuChoice = computerPlay();
+    //console.log(cpuChoice);
+    console.log(playRound(playerChoice, cpuChoice));
+
+  </script>
+</body>
+</html>
