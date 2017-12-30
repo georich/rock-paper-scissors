@@ -6,6 +6,7 @@
 <body>
   <script>
     const choices = ['rock', 'paper', 'scissors'];
+    const maxRounds = 5;
 
     // Computers choice
     function computerPlay() {
@@ -13,29 +14,59 @@
     } 
 
     // Finding winner or loser
-    function playRound(playerChoice, cpuChoice) {
-        playerChoice = playerChoice.toLowerCase();
-        let result;
+    function game(maxRounds) {
+        //let tie = 0; let win = 0; let lose = 0; // For counting
 
-        if (playerChoice === cpuChoice) {
-            result = 'Tie';
-        }   else if ((playerChoice === 'rock') && (cpuChoice === 'scissors')) {
-            result = 'Win! Rock beats scissors';
-        }   else if ((playerChoice === 'paper') && (cpuChoice === 'rock')) {
-            result = 'Win! Paper beats rock';
-        }   else if ((playerChoice === 'scissors') && (cpuChoice === 'paper')) {
-            result = 'Win! Scissors beats paper';
-        }   else {
-            result = ('Lose, ' + cpuChoice + ' beats ' + playerChoice);
+        for (let round = 0; round < maxRounds; round++) {
+            function playRound(playerChoice, cpuChoice) {
+                playerChoice = playerChoice.toLowerCase();
+                let result;
+
+                if (playerChoice === cpuChoice) {
+                    console.log('Tie!');
+                    result = 'tie';
+                }   else if ((playerChoice === 'rock') && (cpuChoice === 'scissors')) {
+                    console.log('Win! Rock beats scissors');
+                    result = 'win';
+                }   else if ((playerChoice === 'paper') && (cpuChoice === 'rock')) {
+                    console.log('Win! Paper beats rock');
+                    result = 'win';
+                }   else if ((playerChoice === 'scissors') && (cpuChoice === 'paper')) {
+                    console.log('Win! Scissors beats paper');
+                    result = 'win';
+                }   else {
+                    console.log('Lose, ' + cpuChoice + ' beats ' + playerChoice);
+                    result = 'lose';
+                }
+                return result;
+            }
+
+            playerChoice = prompt('Rock, Paper, Scissors. Pick your option:');
+            cpuChoice = computerPlay();
+            let roundConclusion = playRound(playerChoice, cpuChoice);
+
+            if (roundConclusion === 'win') {
+                win++;
+            }   else if (roundConclusion === 'lose') {
+                lose++;
+            }   else {
+                tie++;
+            }
         }
-        return result;
+        return tie, win, lose;
     }
 
-    playerChoice = prompt('Rock, Paper, Scissors. Pick your option:');
-    cpuChoice = computerPlay();
-    //console.log(cpuChoice);
-    console.log(playRound(playerChoice, cpuChoice));
+    let tie = 0; let win = 0; let lose = 0;
+    tie, win, lose = game(maxRounds);
 
+    if (win > lose) {
+        console.log('You win! The score was ' + win + ' wins to ' + lose + ' losses, with ' + tie + ' ties');
+    }   else if (lose > win) {
+        console.log('You lose! The score was ' + win + ' wins to ' + lose + ' losses, with ' + tie + ' ties');
+    }   else {
+        console.log('Tie game! Try again')
+    }
+    
   </script>
 </body>
 </html>
